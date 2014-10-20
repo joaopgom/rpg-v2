@@ -15,19 +15,22 @@ class Game:
         self.walk_speed = 3
         
     def player_input(self, key_pressed):
-        move_map_camera = False
         if key_pressed[K_LEFT]:
             if not self.map.move(self.walk_speed, 0):
                 self.player.move(self.walk_speed*(-1), 0)
+            self.player.change_sprite(self.walk_speed*(-1), 0)
         elif key_pressed[K_RIGHT]:
             if not self.map.move(self.walk_speed*(-1), 0):
                 self.player.move(self.walk_speed, 0)
+            self.player.change_sprite(self.walk_speed, 0)
         elif key_pressed[K_UP]:
             if not self.map.move(0, self.walk_speed):
                 self.player.move(0, self.walk_speed*(-1))
+            self.player.change_sprite(0, self.walk_speed*(-1))
         elif key_pressed[K_DOWN]:
             if not self.map.move(0, self.walk_speed*(-1)):
                 self.player.move(0, self.walk_speed)
+            self.player.change_sprite(0, self.walk_speed)
 
     def main_loop(self):
         while True:

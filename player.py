@@ -28,7 +28,7 @@ class Creature(Position):
 
 class Player(Creature):
     def __init__(self, name):
-        Creature.__init__(self, name)        
+        Creature.__init__(self, name)
         self.weapon = None
         self.armor = None
         self.legs = None
@@ -44,21 +44,36 @@ class Player(Creature):
         #self.sprites_length[1] = self.image.get_height()/4
         self.direction = [0, 0]
         self.load_sprites()
-    
-    
+
     def draw(self):
-        global_data.screen.blit(self.image, self.get_position(), self.sprites[0][0])
-    
-    
+        global_data.screen.blit(self.image, self.get_position(), self.sprites[self.direction[0]][self.direction[1]])
+
     def load_sprites(self):
         for x in range(4):
             for y in range(4):
-                self.sprites[x][y] = pygame.Rect((self.image.get_width()/4)*x, 
-                                                 (self.image.get_height()/4)*y, 
+                self.sprites[x][y] = pygame.Rect((self.image.get_width()/4)*y, 
+                                                 (self.image.get_height()/4)*x, 
                                                  self.image.get_width()/4,
                                                  self.image.get_height()/4)
-    
+
+    def change_sprite(self, x, y):
+        if x > 0 and y == 0:
+            self.direction[0] = 2
+        elif x < 0 and y == 0:
+            self.direction[0] = 1
+        elif x == 0 and y > 0:
+            self.direction[0] = 0   
+            print self.direction[0], self.direction[1]         
+        elif x == 0 and y < 0:
+            self.direction[0] = 3
+        if x != 0 or y != 0:
+             
+            self.direction[1] = self.direction[1]+1 if self.direction[1] < 3 else 0
+            
     def move(self, x, y):
         pos = self.get_position()
         self.set_position(pos[0]+x, pos[1]+y)
+
         
+            
+            
