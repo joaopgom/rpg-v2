@@ -13,23 +13,28 @@ class Game:
         self.map = Map('WORLD_MAP')
         self.player = Player('L')
         self.walk_speed = 3
+        self.clock = pygame.time.Clock()
         
     def player_input(self, key_pressed):
         if key_pressed[K_LEFT]:
             if not self.map.move(self.walk_speed, 0):
-                self.player.move(self.walk_speed*(-1), 0)
+                if not (self.player.x + self.walk_speed*(-1)) < 0:
+                    self.player.move(self.walk_speed*(-1), 0)
             self.player.change_sprite(self.walk_speed*(-1), 0)
         elif key_pressed[K_RIGHT]:
             if not self.map.move(self.walk_speed*(-1), 0):
-                self.player.move(self.walk_speed, 0)
+                if not (self.player.x + self.walk_speed) > global_data.screen_width - (self.player.image.get_width()/4):
+                    self.player.move(self.walk_speed, 0)
             self.player.change_sprite(self.walk_speed, 0)
         elif key_pressed[K_UP]:
             if not self.map.move(0, self.walk_speed):
-                self.player.move(0, self.walk_speed*(-1))
+                if not (self.player.y + self.walk_speed*(-1)) < 0:
+                    self.player.move(0, self.walk_speed*(-1))
             self.player.change_sprite(0, self.walk_speed*(-1))
         elif key_pressed[K_DOWN]:
             if not self.map.move(0, self.walk_speed*(-1)):
-                self.player.move(0, self.walk_speed)
+                if not (self.player.y + self.walk_speed) > global_data.screen_height - (self.player.image.get_height()/4):
+                    self.player.move(0, self.walk_speed)
             self.player.change_sprite(0, self.walk_speed)
 
     def main_loop(self):
@@ -43,6 +48,7 @@ class Game:
                 self.map.draw_map()
                 self.player.draw()
                 pygame.display.update()
+            self.clock.tick(30)
 
 if __name__ == '__main__':
     pygame.init()

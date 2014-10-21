@@ -1,3 +1,5 @@
+# -*- encoding: utf-8 -*-
+
 import pygame
 import global_data
 from position import Position
@@ -24,7 +26,7 @@ class Creature(Position):
         self.selfie = None
         #self.sprites = [[None for x in range(4)] for y in range(4)]
         #self.sprites_length = [0, 0]
-                
+
 
 class Player(Creature):
     def __init__(self, name):
@@ -62,18 +64,12 @@ class Player(Creature):
         elif x < 0 and y == 0:
             self.direction[0] = 1
         elif x == 0 and y > 0:
-            self.direction[0] = 0   
-            print self.direction[0], self.direction[1]         
+            self.direction[0] = 0
         elif x == 0 and y < 0:
             self.direction[0] = 3
         if x != 0 or y != 0:
-             
             self.direction[1] = self.direction[1]+1 if self.direction[1] < 3 else 0
-            
-    def move(self, x, y):
-        pos = self.get_position()
-        self.set_position(pos[0]+x, pos[1]+y)
 
+    def move(self, x, y):        
+        self.set_position(self.x+x, self.y+y)
         
-            
-            

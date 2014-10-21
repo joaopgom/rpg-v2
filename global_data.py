@@ -9,11 +9,6 @@ def create_screen(width, height):
     _screen.fill((255, 255, 255))
     return _screen
 
-def load_map_tiles():
-    pass
-
-def load_texture(texture_name):
-    pass
 screen_width = 800
 screen_height = 608
 

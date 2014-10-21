@@ -1,5 +1,5 @@
-GRASS;True;0;0;0;0;grass.jpg;;;;;;
-GRASS;True;0;0;0;32;grass.jpg;;;;;;
+GRASS;True;0;0;0;0;grass.jpg;0;0;WORLD_MAP.png;TREE;;
+GRASS;True;0;0;0;32;grass.jpg;0;32;WORLD_MAP.png;TREE;;
 GRASS;True;0;0;0;64;grass.jpg;;;;;;
 GRASS;True;0;0;0;96;grass.jpg;;;;;;
 GRASS;True;0;0;0;128;grass.jpg;;;;;;

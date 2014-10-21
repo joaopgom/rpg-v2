@@ -1,3 +1,5 @@
+# -*- encoding: utf-8 -*-
+
 class Position:
     def __init__(self):
         self.x = 0
