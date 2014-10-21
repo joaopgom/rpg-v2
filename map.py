@@ -56,8 +56,8 @@ class Map:
                 if data[7] != '' and data[8] != '' and data[9] != '' and data[10] != '':# and data[11] != '':
                      self.map_tiles[x][y].object = ObjectMap()
                      self.map_tiles[x][y].object.set_position(data[4], data[5])
-                     self.map_tiles[x][y].object.name = data[11]
-                     self.map_tiles[x][y].object.type = data[12]
+                     self.map_tiles[x][y].object.name = data[10]
+                     self.map_tiles[x][y].object.type = data[11]
                      if data[9] not in global_data.texture_manager.textures:
                          global_data.texture_manager.load_texture(data[9], 'images/'+data[9], -1)
                      self.map_tiles[x][y].object.image = global_data.texture_manager.textures[data[9]] 
