@@ -12,5 +12,8 @@ def create_screen(width, height):
 screen_width = 800
 screen_height = 608
 
+#tela que é exibida
 screen = create_screen(screen_width, screen_height)
+
+#todas as texturas são carregadas e armazenadas no texture_manager
 texture_manager = image.Image()

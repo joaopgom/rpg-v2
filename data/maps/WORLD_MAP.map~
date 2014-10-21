@@ -1,5 +1,5 @@
-GRASS;True;0;0;0;0;grass.jpg;0;0;WORLD_MAP.png;TREE;;
-GRASS;True;0;0;0;32;grass.jpg;;;;;;
+GRASS;False;0;0;0;0;grass.jpg;0;0;WORLD_MAP.png;TREE;;
+GRASS;True;0;0;0;32;grass.jpg;0;32;WORLD_MAP.png;TREE;;
 GRASS;True;0;0;0;64;grass.jpg;;;;;;
 GRASS;True;0;0;0;96;grass.jpg;;;;;;
 GRASS;True;0;0;0;128;grass.jpg;;;;;;
@@ -556,8 +556,8 @@ GRASS;True;0;0;576;448;grass.jpg;;;;;;
 GRASS;True;0;0;576;480;grass.jpg;;;;;;
 GRASS;True;0;0;576;512;grass.jpg;;;;;;
 GRASS;True;0;0;576;544;grass.jpg;;;;;;
-GRASS;True;0;0;576;576;grass.jpg;;;;;;
-GRASS;True;0;0;576;608;grass.jpg;;;;;;
+GRASS;False;0;0;576;576;grass.jpg;0;320;WORLD_MAP.png;TREE;;
+GRASS;True;0;0;576;608;grass.jpg;0;352;WORLD_MAP.png;TREE;PORTAL;
 GRASS;True;0;0;576;640;grass.jpg;;;;;;
 GRASS;True;0;0;576;672;grass.jpg;;;;;;
 GRASS;True;0;0;576;704;grass.jpg;;;;;;

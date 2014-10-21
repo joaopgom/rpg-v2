@@ -45,7 +45,7 @@ class Map:
             for y in range(self.map_pieces_length[1]):
                 data = map_data.readline().replace('\n', '').split(';')
                 self.map_tiles[x][y].name = data[0]
-                self.map_tiles[x][y].can_walk = data[1]
+                self.map_tiles[x][y].can_walk = True if data[1] == 'True' else False
                 self.map_tiles[x][y].image_position = (int(data[2]), int(data[3]))
                 if self.name not in global_data.texture_manager.textures:
                     global_data.texture_manager.load_texture(self.map_tiles[x][y].name, 'images/'+data[6], -1)
@@ -56,6 +56,8 @@ class Map:
                 if data[7] != '' and data[8] != '' and data[9] != '' and data[10] != '':# and data[11] != '':
                      self.map_tiles[x][y].object = ObjectMap()
                      self.map_tiles[x][y].object.set_position(data[4], data[5])
+                     self.map_tiles[x][y].object.name = data[11]
+                     self.map_tiles[x][y].object.type = data[12]
                      if data[9] not in global_data.texture_manager.textures:
                          global_data.texture_manager.load_texture(data[9], 'images/'+data[9], -1)
                      self.map_tiles[x][y].object.image = global_data.texture_manager.textures[data[9]] 
@@ -80,4 +82,6 @@ class ObjectMap(Position):
         Position.__init__(self)
         self.rect = None
         self.image = None
+        self.name = None
+        self.type = None
         

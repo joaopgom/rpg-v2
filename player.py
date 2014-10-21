@@ -24,9 +24,6 @@ class Creature(Position):
         self._def = CREATURES_LOADED[self.name]['_def']
         self.def_m = CREATURES_LOADED[self.name]['def_m']
         self.selfie = None
-        #self.sprites = [[None for x in range(4)] for y in range(4)]
-        #self.sprites_length = [0, 0]
-
 
 class Player(Creature):
     def __init__(self, name):
@@ -40,10 +37,7 @@ class Player(Creature):
         self.in_battle = False
         global_data.texture_manager.load_texture(self.name, 'images/character/%s/%s.png'%(self.name.upper(), self.name.upper()), -1)
         self.image = global_data.texture_manager.textures[self.name][0]
-        #self.sprites_length = [0, 0]
         self.sprites = [[None for x in range(4)] for y in range(4)]
-        #self.sprites_length[0] = self.image.get_width()/4
-        #self.sprites_length[1] = self.image.get_height()/4
         self.direction = [0, 0]
         self.load_sprites()
 
