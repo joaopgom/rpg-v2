@@ -6,8 +6,10 @@ from pygame import Rect
 from camera import Camera
 from position import Position
 
-MAP_LIST = {'WORLD_MAP':[True, 50, 30, 30],
-             'MIDGARD':[False, 0, 30, 30]
+MAP_LIST = { #mapname:enemy freq%, map pieces w, map pieces h  
+             'WORLD_MAP':[True, 50, 30, 30],
+             'MIDGARD':[False, 0, 30, 30],
+             'HOUSE':[False, 0, 19, 25],
             }
 
 class MapTile:
@@ -41,7 +43,8 @@ class Map:
         self.map_pieces = None
         self.map_pieces_length = [int(MAP_LIST[self.name][2]),
                                   int(MAP_LIST[self.name][3])]
-        self.map_tiles = [[MapTile() for i in range(self.map_pieces_length[0])] for j in range(self.map_pieces_length[1])]
+        
+        self.map_tiles = [[MapTile() for i in range(self.map_pieces_length[1])] for j in range(self.map_pieces_length[0])]
         self.load_map()
 
     def load_map(self):
@@ -49,6 +52,7 @@ class Map:
         for x in range(self.map_pieces_length[0]):
             for y in range(self.map_pieces_length[1]):
                 data = map_data.readline().replace('\n', '').split(';')
+                print len(self.map_tiles), len(self.map_tiles[0])
                 self.map_tiles[x][y].name = data[0]
                 self.map_tiles[x][y].can_walk = True if data[1] == 'True' else False
                 self.map_tiles[x][y].image_position = (int(data[2]), int(data[3]))
