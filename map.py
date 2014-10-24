@@ -25,6 +25,11 @@ class MapTile:
                                 self.rect)
         if self.object is not None:
             global_data.screen.blit(self.object.image[0], (self.position[0] + camera.get_position()[0], camera.get_position()[1] + self.position[1]), self.object.rect)
+            """
+            global_data.screen.blit(global_data.texture_manager.textures[self.name][0], \
+                                (int(self.position[0]) + camera.get_position()[0], camera.get_position()[1] + int(self.position[1])), \
+                                pygame.Rect(100, 1000, 32, 32))
+            """
 
 class Map:
     def __init__(self, name):
@@ -60,7 +65,7 @@ class Map:
                      self.map_tiles[x][y].object.type = data[11]
                      if data[9] not in global_data.texture_manager.textures:
                          global_data.texture_manager.load_texture(data[9], 'images/'+data[9], -1)
-                     self.map_tiles[x][y].object.image = global_data.texture_manager.textures[data[9]] 
+                     self.map_tiles[x][y].object.image = global_data.texture_manager.textures[data[9]]
                      self.map_tiles[x][y].object.rect = pygame.Rect(int(data[7]), int(data[8]), 32, 32) 
                 else:
                     self.map_tiles[x][y].object = None
