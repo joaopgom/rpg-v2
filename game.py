@@ -35,7 +35,10 @@ class Game:
     
     """ Recebe o input do jogador e realiza a ação de acordo com a tecla pressionada """
     def player_input(self, key_pressed):
-        #calcula qual será a posição futura do personagem no mapa
+        """
+        calcula qual será a posição futura do personagem em relação ao mapa geral usando a posição da 
+        camera em relação ao mapa e do personagem e do personagem em relação a camera
+        """
         #x_, y_ = (self.map.camera.x*(-1)+self.player.x)/32, (self.map.camera.y*(-1)+self.player.y)/32
 
         if key_pressed[K_LEFT]:
