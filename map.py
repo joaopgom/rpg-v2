@@ -44,13 +44,13 @@ class Map:
         self.map_pieces_length = [int(MAP_LIST[self.name][2]),
                                   int(MAP_LIST[self.name][3])]
         
-        self.map_tiles = [[MapTile() for i in range(self.map_pieces_length[1])] for j in range(self.map_pieces_length[0])]
+        self.map_tiles = [[MapTile() for i in range(self.map_pieces_length[0])] for j in range(self.map_pieces_length[1])]
         self.load_map()
 
     def load_map(self):
         map_data = open('data/maps/'+self.name+'.map', 'r')
-        for x in range(self.map_pieces_length[0]):
-            for y in range(self.map_pieces_length[1]):
+        for y in range(self.map_pieces_length[0]):
+            for x in range(self.map_pieces_length[1]):
                 data = map_data.readline().replace('\n', '').split(';')
                 print len(self.map_tiles), len(self.map_tiles[0])
                 self.map_tiles[x][y].name = data[0]
@@ -59,12 +59,12 @@ class Map:
                 if self.name not in global_data.texture_manager.textures:
                     global_data.texture_manager.load_texture(self.map_tiles[x][y].name, 'images/'+data[6], -1)
                 self.map_tiles[x][y].image = global_data.texture_manager.textures[self.map_tiles[x][y].name]
-                self.map_tiles[x][y].position = (int(data[4]), int(data[5]))
+                self.map_tiles[x][y].position = (int(data[5]), int(data[4]))
                 self.map_tiles[x][y].rect = pygame.Rect(int(data[2]), int(data[3]), 32, 32)
                 self.map_tiles[x][y].object = None
                 if data[7] != '' and data[8] != '' and data[9] != '' and data[10] != '':# and data[11] != '':
                      self.map_tiles[x][y].object = ObjectMap()
-                     self.map_tiles[x][y].object.set_position(data[4], data[5])
+                     self.map_tiles[x][y].object.set_position(int(data[5]), int(data[4]))
                      self.map_tiles[x][y].object.name = data[10]
                      self.map_tiles[x][y].object.type = data[11]
                      if data[9] not in global_data.texture_manager.textures:
@@ -78,7 +78,7 @@ class Map:
     def draw_map(self):
         for x in range(self.map_pieces_length[0]):
             for y in range(self.map_pieces_length[1]):
-                self.map_tiles[x][y].draw_piece(self.camera)
+                self.map_tiles[y][x].draw_piece(self.camera)
 
     def move(self, x, y):
         if self.camera.move_camera(x, y, self.map_pieces_length[0], self.map_pieces_length[1]):
