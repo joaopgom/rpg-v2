@@ -52,7 +52,7 @@ class Map:
         for y in range(self.map_pieces_length[0]):
             for x in range(self.map_pieces_length[1]):
                 data = map_data.readline().replace('\n', '').split(';')
-                print len(self.map_tiles), len(self.map_tiles[0])
+
                 self.map_tiles[x][y].name = data[0]
                 self.map_tiles[x][y].can_walk = True if data[1] == 'True' else False
                 self.map_tiles[x][y].image_position = (int(data[2]), int(data[3]))

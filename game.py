@@ -3,6 +3,7 @@
 import sys
 import pygame
 import global_data
+import dialog
 from pygame import event, K_LEFT, K_RIGHT, K_UP, K_DOWN
 from map import Map
 from player import Player
@@ -101,6 +102,7 @@ class Game:
                     self.player_input(pygame.key.get_pressed())
                 self.map.draw_map()
                 self.player.draw()
+                dialog.dialog(100, 100, None, [u'Testando a aplicação'])
                 pygame.display.update()
             self.clock.tick(30)
 
