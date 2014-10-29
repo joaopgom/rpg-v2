@@ -67,6 +67,8 @@ class Map:
                      self.map_tiles[x][y].object.set_position(int(data[5]), int(data[4]))
                      self.map_tiles[x][y].object.name = data[10]
                      self.map_tiles[x][y].object.type = data[11]
+                     print data
+                     self.map_tiles[x][y].object.has_dialog = True if data[12] == 'True' else False
                      if data[9] not in global_data.texture_manager.textures:
                          global_data.texture_manager.load_texture(data[9], 'images/'+data[9], -1)
                      self.map_tiles[x][y].object.image = global_data.texture_manager.textures[data[9]]
@@ -93,4 +95,5 @@ class ObjectMap(Position):
         self.image = None
         self.name = None
         self.type = None
+        self.has_dialog = False
         

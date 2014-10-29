@@ -4,7 +4,7 @@ import sys
 import pygame
 import global_data
 import dialog
-from pygame import event, K_LEFT, K_RIGHT, K_UP, K_DOWN
+from pygame import event, K_LEFT, K_RIGHT, K_UP, K_DOWN, K_RETURN
 from map import Map
 from player import Player
 
@@ -19,6 +19,7 @@ class Game:
         self.player.move(100, 100)
         self.walk_speed = 3
         self.clock = pygame.time.Clock()
+        self.last_input = None
     
     def check_map_width(self, x):
         if x >= len(self.map.map_tiles):
@@ -41,7 +42,29 @@ class Game:
         camera em relação ao mapa e do personagem e do personagem em relação a camera
         """
         #x_, y_ = (self.map.camera.x*(-1)+self.player.x)/32, (self.map.camera.y*(-1)+self.player.y)/32
-
+  
+        if key_pressed[K_RETURN]:
+            x_, y_ = 0, 0
+            if self.last_input[K_LEFT]:
+                x_ = self.check_map_width((self.map.camera.x*(-1)+self.player.x)/32) 
+                y_ = self.check_map_height((self.map.camera.y*(-1)+self.player.y+42)/32)                
+            elif self.last_input[K_RIGHT]:
+                x_ = self.check_map_width((self.map.camera.x*(-1)+self.player.x+24)/32)
+                y_ = self.check_map_height((self.map.camera.y*(-1)+self.player.y+42)/32)
+            elif self.last_input[K_UP]:
+                x_ = self.check_map_width((self.map.camera.x*(-1) + self.player.x+16)/32)
+                y_ = self.check_map_height((self.map.camera.y*(-1) + self.player.y+16*(1))/32)
+            elif self.last_input[K_DOWN]:
+                x_ = self.check_map_width((self.map.camera.x*(-1) + self.player.x+16)/32)
+                y_ = self.check_map_height((self.map.camera.y*(-1) + self.player.y+48)/32)
+            
+            if self.map.map_tiles[x_][y_].object is not None and self.map.map_tiles[x_][y_].object.type == 'NPC':
+                print u'load_dialog'
+                if self.map.map_tiles[x_][y_].object.has_dialog:
+                    file_name = u'%s_%s'%(self.player.name, self.map.map_tiles[x_][y_].object.name)
+                    if file_name.upper() not in dialog.DIALOGUES:
+                        dialog.load_dialog(file_name.upper())
+                    pass
         if key_pressed[K_LEFT]:
             x_ = self.check_map_width((self.map.camera.x*(-1)+self.player.x)/32) 
             y_ = self.check_map_height((self.map.camera.y*(-1)+self.player.y+42)/32)
@@ -91,7 +114,7 @@ class Game:
             elif self.map.map_tiles[x_][y_].object is not None and self.map.map_tiles[x_][y_].object.type == 'PORTAL':
                 pass
             self.player.change_sprite(0, self.walk_speed)
-
+        self.last_input = key_pressed
     def main_loop(self):
         while True:
             for ev in event.get():
