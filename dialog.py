@@ -4,7 +4,7 @@ from pygame.locals import K_RETURN
 
 DIALOGUES = {}
 
-def dialog(player_position, other_position, conversation):
+def dialog(player, map, other_position, conversation):
     font_file = u'/usr/share/fonts/truetype/ttf-khmeros-core/KhmerOS.ttf'
     font_render = pygame.font.Font(font_file, 14)
     dialog_count = 0
@@ -13,17 +13,24 @@ def dialog(player_position, other_position, conversation):
             if ev.type == pygame.KEYDOWN:
                 if pygame.key.get_pressed()[K_RETURN]:
                     if dialog_count >= len(DIALOGUES[conversation]):
-                        break
+                        return
                     speech = DIALOGUES[conversation][dialog_count]
                     speech_ = font_render.render(speech[0]+': '+speech[1], True, pygame.Color(0, 0, 0))
                     width = speech_.get_width()+30
                     height = speech_.get_height()+30
                     border_top = screen_height-height-30
-                    border_left = (screen_width-width)/2
-                    print (border_top, border_left, width, height)
-                    rect = pygame.Rect(border_top, border_left, width, height)
-                    pygame.draw.rect(screen, pygame.Color(10,10,211), rect, 2)
+                    border_left = (screen_width/2)-(width/2)                    
+                    rect = pygame.Rect(border_left, border_top, width, height)
+                    
+                    map.draw_map()
+                    player.draw()
+                    pygame.draw.rect(screen, pygame.Color(10, 10, 211), rect, 2)
+                    
+                    rect = pygame.Rect(border_left+2, border_top+2, width-4, height-4)
+                    pygame.draw.rect(screen, pygame.Color(180, 180, 180, 128), rect)
+
                     dialog_count+=1
+                    pygame.display.update()
                     pygame.time.Clock().tick(30)
                     
         

@@ -54,7 +54,7 @@ class Game:
                 file_name = u'%s_%s'%(self.player.name, self.map.map_tiles[x_][y_].object.name)
                 if file_name.upper() not in dialog.DIALOGUES:
                     dialog.load_dialog(file_name.upper())
-                dialog.dialog((self.player.get_position()), self.map.map_tiles[x_][y_].object.get_position(), file_name)
+                dialog.dialog(self.player, self.map, self.map.map_tiles[x_][y_].object.get_position(), file_name)
     
     def move_left(self, x_, y_):
         if self.map.map_tiles[x_][y_].can_walk:
