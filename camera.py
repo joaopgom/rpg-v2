@@ -2,15 +2,17 @@
 
 import global_data
 from position import Position
+
+
 class Camera(Position):
     def __init__(self):
         Position.__init__(self)
 
     #retorna True caso a camera possa se mover respeitando os limites do mapa
     def move_camera(self, x, y, map_width, map_height):
-        if x > 0 and self.x < 0 or x < 0 and (global_data.screen_width - (map_width*32)) < self.x:
+        if x > 0 > self.x or x < 0 and (global_data.screen_width - (map_width*32)) < self.x:
             return True
-        elif y > 0 and self.y < 0 or y < 0 and (global_data.screen_height - (map_height*32)) < self.y:
+        elif y > 0 > self.y or y < 0 and (global_data.screen_height - (map_height*32)) < self.y:
             return True
         return False
     

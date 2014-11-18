@@ -1,10 +1,20 @@
-import pygame
-from global_data import *
 from pygame.locals import K_RETURN
+
+from global_data import *
+
 
 DIALOGUES = {}
 
+
 def dialog(player, map, other_position, conversation):
+    """
+
+    :param player: is the main player that will be drawed on map
+    :param map: the current map
+    :param other_position:
+    :param conversation: conversation that have to be loaded
+    :return: void
+    """
     font_file = u'/usr/share/fonts/truetype/ttf-khmeros-core/KhmerOS.ttf'
     font_render = pygame.font.Font(font_file, 14)
     dialog_count = 0
@@ -30,12 +40,17 @@ def dialog(player, map, other_position, conversation):
                     rect = pygame.Rect(border_left+2, border_top+2, width-4, height-4)
                     pygame.draw.rect(screen, pygame.Color(180, 180, 180, 128), rect)
 
-                    dialog_count+=1
+                    dialog_count += 1
                     pygame.display.update()
                     pygame.time.Clock().tick(30)
 
+
 def load_dialog(file_name):
-    dialog = open(u'data/conversation/%s.conv'%(file_name), 'r')
+    """
+
+    :param file_name: conversation's file name
+    """
+    dialog = open(u'data/conversation/%s.conv' % file_name, 'r')
     DIALOGUES[file_name] = []
     for speech in dialog:
         speech_data = speech.split(';')

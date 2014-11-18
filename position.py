@@ -6,7 +6,7 @@ class Position:
         self.y = 0
     
     def get_position(self):
-        return (self.x, self.y)
+        return self.x, self.y
     
     def set_position(self, x, y):
         self.x = x

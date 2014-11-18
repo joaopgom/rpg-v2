@@ -8,13 +8,17 @@ from pygame import event, K_LEFT, K_RIGHT, K_UP, K_DOWN, K_RETURN
 from map import Map
 from player import Player
 
+
 class Game:
     def __init__(self):
-        self.screen = global_data.screen        
+        """
+
+        :type self: object
+        """
+        self.screen = global_data.screen
         self.map = Map('WORLD_MAP')
         #self.current_map = 'WORLD_MAP'
-        self.maps = {}
-        self.maps[self.map.name] = self.map
+        self.maps = {self.map.name: self.map}
         self.player = Player('L')
         self.player.move(100, 100)
         self.walk_speed = 3
@@ -75,7 +79,7 @@ class Game:
             if not self.map.move(0, self.walk_speed):
                 if not (self.player.y + self.walk_speed*(-1)) < 0:
                     self.player.move(0, self.walk_speed*(-1))
-        elif self.map.map_tiles[x_][y_].object is not None:# and self.map.map_tiles[x_][y_].object.type == 'PORTAL':
+        elif self.map.map_tiles[x_][y_].object is not None:
             self.object_map_collider(self.map.map_tiles[x_][y_].object, x_, y_)
         self.player.change_sprite(0, self.walk_speed*(-1))
 

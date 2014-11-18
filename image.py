@@ -2,6 +2,7 @@
 import pygame
 from pygame import image
 
+
 class Image():
     def __init__(self):
         self.textures = dict()
