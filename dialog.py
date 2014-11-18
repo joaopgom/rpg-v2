@@ -1,5 +1,5 @@
+import time
 from pygame.locals import K_RETURN
-
 from global_data import *
 
 
@@ -26,7 +26,9 @@ def dialog(player, map, other_position, conversation):
                     if dialog_count >= len(DIALOGUES[conversation]):
                         return
                     speech = DIALOGUES[conversation][dialog_count]
-                    speech_ = font_render.render(speech[0]+': '+speech[1], True, pygame.Color(0, 0, 0))
+
+                    speech_ = font_render.render(speech[0]+': '+speech[1], True, pygame.Color(255, 255, 255))
+
                     width = speech_.get_width()+30
                     height = speech_.get_height()+30
                     border_top = screen_height-height-30
@@ -35,14 +37,15 @@ def dialog(player, map, other_position, conversation):
                     
                     map.draw_map()
                     player.draw()
-                    pygame.draw.rect(screen, pygame.Color(10, 10, 211), rect, 2)
+                    pygame.draw.rect(screen, pygame.Color(200, 200, 200), rect, 2)
                     
                     rect = pygame.Rect(border_left+2, border_top+2, width-4, height-4)
-                    pygame.draw.rect(screen, pygame.Color(180, 180, 180, 128), rect)
-
+                    pygame.draw.rect(screen, pygame.Color(10, 10, 211), rect)
+                    screen.blit(speech_, (border_left+15, border_top+15))
                     dialog_count += 1
                     pygame.display.update()
                     pygame.time.Clock().tick(30)
+                    time.sleep(1)
 
 
 def load_dialog(file_name):

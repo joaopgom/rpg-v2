@@ -90,7 +90,7 @@ class Game:
                     self.player.move(0, self.walk_speed)
         self.player.change_sprite(0, self.walk_speed)
 
-    def object_map_collider(self, object, X_, Y_):
+    def object_map_collider(self, object, x_, y_):
         if object.type == 'PORTAL':
             if not self.map.map_tiles[x_][y_].object.name in self.maps:
                 self.maps[self.map.map_tiles[x_][y_].object.name] = Map(self.map.map_tiles[x_][y_].object.name) 
