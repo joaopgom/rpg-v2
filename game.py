@@ -55,10 +55,10 @@ class Game:
             y_ = self.check_map_height((self.map.camera.y*(-1) + self.player.y+48)/32)
         if self.map.map_tiles[x_][y_].object is not None and self.map.map_tiles[x_][y_].object.type == 'NPC':
             if self.map.map_tiles[x_][y_].object.has_dialog:
-                file_name = u'%s_%s'%(self.player.name, self.map.map_tiles[x_][y_].object.name)
+                file_name = u'%s_%s' % (self.player.name, self.map.map_tiles[x_][y_].object.name)
                 if file_name.upper() not in dialog.DIALOGUES:
                     dialog.load_dialog(file_name.upper())
-                dialog.dialog(self.player, self.map, self.map.map_tiles[x_][y_].object.get_position(), file_name)
+                dialog.dialog(self.player, self.map, self.map.map_tiles[x_][y_].object.get_position, file_name)
     
     def move_left(self, x_, y_):
         if self.map.map_tiles[x_][y_].can_walk:
@@ -86,7 +86,8 @@ class Game:
     def move_down(self, x_, y_):
         if self.map.map_tiles[x_][y_].can_walk:
             if not self.map.move(0, self.walk_speed*(-1)):
-                if not (self.player.y + self.walk_speed) > global_data.screen_height - (self.player.image.get_height()/4):
+                if not (self.player.y + self.walk_speed) > global_data.screen_height - \
+                        (self.player.image.get_height()/4):
                     self.player.move(0, self.walk_speed)
         self.player.change_sprite(0, self.walk_speed)
 

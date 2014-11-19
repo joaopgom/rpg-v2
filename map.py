@@ -2,15 +2,10 @@
 
 import pygame
 import global_data
-from pygame import Rect
 from camera import Camera
 from position import Position
 
-MAP_LIST = {  # mapname:enemy freq%, map pieces w, map pieces h
-              'WORLD_MAP': [True, 50, 30, 30],
-              'MIDGARD': [False, 0, 30, 30],
-              'HOUSE': [False, 0, 19, 25],
-}
+MAP_LIST = dict(WORLD_MAP=[True, 50, 30, 30], MIDGARD=[False, 0, 30, 30], HOUSE=[False, 0, 19, 25], WORLD_MAP_BATTLE=[False, 0, 19, 25])
 
 
 class MapTile:
@@ -101,4 +96,3 @@ class ObjectMap(Position):
         self.name = None
         self.type = None
         self.has_dialog = False
-

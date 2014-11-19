@@ -20,4 +20,4 @@ class Camera(Position):
         self.set_position(self.x+x, self.y+y)
 
     def get_camera(self):
-        return self.get_position()
+        return self.get_position
